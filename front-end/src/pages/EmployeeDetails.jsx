@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button, Card, Image } from "semantic-ui-react";
 import { useState } from "react";
-import EmployeeService from "../services/employeeService";
+import EmployeeService from "../services/EmployeeService";
 
 export default function EmployeeDetails() {
   let { id } = useParams();

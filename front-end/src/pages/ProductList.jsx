@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon, Menu, Table } from "semantic-ui-react";
-import EmployeeService from "../services/employeeService";
+import EmployeeService from "../services/EmployeeService";
 
 export default function ProductList() {
   const [employee, setemployee] = useState([]);
