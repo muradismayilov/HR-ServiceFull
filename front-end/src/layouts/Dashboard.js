@@ -1,11 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Grid } from "semantic-ui-react";
-import CartDetail from "../pages/CartDetail";
 import EmployeeAdd from "../pages/EmployeeAdd";
 import EmployeeDetails from "../pages/EmployeeDetails";
+import EmployeeList from "../pages/EmployeeList";
 
-import ProductList from "../pages/ProductList";
 import Categories from "./Categories";
 
 export default function Dashboard() {
@@ -18,11 +17,11 @@ export default function Dashboard() {
           </Grid.Column>
           <Grid.Column width={12}>
             <Routes>
-              <Route exact path="/" element={<ProductList />} /> 
-              <Route path="/employee" element={<ProductList />} />
-              <Route path="/employee/:id" element={<EmployeeDetails />} />
-              <Route path="/cart" element={<CartDetail />} />
-              <Route path="/employee/add" element={<EmployeeAdd />} />
+              <Route exact path="*" element= {<EmployeeList/>} /> 
+              <Route path="/dashboard/employee" element={<EmployeeList />} />
+              <Route path="/dashboard/employee/:id" element={<EmployeeDetails />} />
+              <Route path="/dashboard/cart" element={<cartdetail />} />
+              <Route path="/dashboard/employee/add" element={<EmployeeAdd />} />
             </Routes>
           </Grid.Column>
         </Grid.Row>

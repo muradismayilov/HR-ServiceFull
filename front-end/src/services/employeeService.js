@@ -1,31 +1,62 @@
 import axios from "axios";
 
 export default class EmployeeService {
-    getEmployees(){
-        return axios.get("http://localhost:8080/api/employee/")
+  
+  getEmployeeById(id,jwt) {
+    return axios.get("http://localhost:8080/api/employee/" + id, {
+      headers: {        
+        Authorization: `Bearer ` + jwt,
+      },
     }
-    getEmployeeById(id){
-        return axios.get("http://localhost:8080/api/employee/id"+id)
-    }
-    getAccess(){
-        return axios.post("http://localhost:8080/login/auth", {
-            username: "ahmed",
-             password: "1234"
-          })
+    
+    );
+  }
 
-//         const reqBody = {
-//       username: "ahmed",
-//        password: "1234",
-//          };
+  getEmployee(jwt) {
+    
+    return axios.get("http://localhost:8080/api/employee", {
+      headers: {        
+        Authorization: `Bearer ` + jwt,
+      },
+    });
+  }
+  getAccess(username, password) {
+    return axios.post("http://localhost:8080/login/auth", {
+      username: username,
+      password: password,
+    });
 
-//    return fetch("http://localhost:8080/login/auth", {
-//       headers: {
-//         "Content-Type": "application/json",
-//        },
-//       method: "post",
-//        body: JSON.stringify(reqBody),
-//      })
-          
-    }
+    //         const reqBody = {
+    //       username: "ahmed",
+    //        password: "1234",
+    //          };
 
+    //    return fetch("http://localhost:8080/login/auth", {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //        },
+    //       method: "post",
+    //        body: JSON.stringify(reqBody),
+    //      })
+  }
+
+  getJob(jwt){
+    return axios.get("http://localhost:8080/api/job", {
+      headers: {        
+        Authorization: `Bearer ` + jwt,
+      },
+    });
+
+  }
+  getDep(jwt){
+    return axios.get("http://localhost:8080/api/department", {
+      headers: {        
+        Authorization: `Bearer ` + jwt,
+      },
+    });
+  }
+
+
+
+  
 }

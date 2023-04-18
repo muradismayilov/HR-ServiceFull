@@ -3,47 +3,44 @@ import { useParams } from "react-router-dom";
 import { Button, Card, Image } from "semantic-ui-react";
 import { useState } from "react";
 import EmployeeService from "../services/EmployeeService";
+import { useLocalState } from "../utilities/useLocalStorage";
 
 export default function EmployeeDetails() {
   let { id } = useParams();
+  const [jwt, setjwt] = useLocalState("", "jwt");
+  
 
   const [employee, setemployee] = useState({});
   useEffect(() => {
+    
     let employeeService = new EmployeeService();
     employeeService
-      .getEmployeeById(id)
-      .then((result) => setemployee(result.data.data));
+      .getEmployeeById(id,jwt)
+      .then(function(res) {
+        if (res.status===200){
+      
+          setemployee(res.data)
+          
+        console.log(employee)
+        
+          
+        }
+      }).catch(function (error) {         
+        console.log(error.message);
+      })
   }, [id]);
 
   return (
     <div>
       Employee :{id}
-      <Card.Group>
-        <Card fluid>
-          <Card.Content>
-            <Image
-              floated="right"
-              size="mini"
-              src="/images/avatar/large/steve.jpg"
-            />
-            <Card.Header>{employee.name}</Card.Header>
-            <Card.Meta>Friends of Elliot</Card.Meta>
-            <Card.Description>
-              Steve wants to add you to the group <strong>best friends</strong>
-            </Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <div className="ui two buttons">
-              <Button basic color="green">
-                Approve
-              </Button>
-              <Button basic color="red">
-                Decline
-              </Button>
-            </div>
-          </Card.Content>
-        </Card>
-      </Card.Group>
+      <h2>
+      {employee.name}</h2>
+      <h1>{employee.surname}</h1>
+      <h3>{employee.fathername}</h3>
+
+
+
+      
     </div>
   );
 }
