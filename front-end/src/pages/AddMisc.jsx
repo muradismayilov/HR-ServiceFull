@@ -10,13 +10,11 @@ export default function AddMisc() {
   const [jwt, setjwt] = useLocalState("", "jwt");
   const [misc, setmisc] = useState({
       
-    name: "",
-    surname:"",
+    
     username:"",
     indate:"",
     outdate:"",
-    jobName:"",
-    departmentName: "",
+    
   });
   let employeeService = new EmployeeService();
 
@@ -51,24 +49,7 @@ export default function AddMisc() {
 
       
       
-      <h3>
-        Misc name:{" "}
-        <input
-          type="name"
-          id="name"
-          onChange={(e) => updateMisc("name", e.target.value)}
-          value={misc.name}
-        />
-      </h3>
-      <h3>
-        Misc surnaname:{" "}
-        <input
-          type="surname"
-          id="surname"
-          onChange={(e) => updateMisc("surname", e.target.value)}
-          value={misc.surname}
-        />
-      </h3>
+     
       <h3>
         Misc username:{" "}
         <input
@@ -96,24 +77,7 @@ export default function AddMisc() {
           value={misc.outdate}
         />
       </h3>
-      <h3>
-        Misc jobName:{" "}
-        <input
-          type="jobName"
-          id="jobName"
-          onChange={(e) => updateMisc("jobName", e.target.value)}
-          value={misc.jobName}
-        />
-      </h3>
-      <h3>
-        Misc departmentName:{" "}
-        <input
-          type="departmentName"
-          id="departmentName"
-          onChange={(e) => updateMisc("departmentName", e.target.value)}
-          value={misc.departmentName}
-        />
-      </h3>
+      
       
       
       <h3>

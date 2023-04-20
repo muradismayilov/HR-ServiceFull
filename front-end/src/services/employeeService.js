@@ -144,7 +144,7 @@ export default class EmployeeService {
   updateMisc(jwt,misc) {
     return axios({
       method: "put",
-      url: "http://localhost:8080/api/misc",
+      url: "http://localhost:8080/api/misc"+misc.username,
       headers: {
         Authorization: `Bearer ` + jwt,
       },
@@ -160,19 +160,16 @@ export default class EmployeeService {
   addMisc(jwt,misc) {
     return axios({
       method: "post",
-      url: "http://localhost:8080/api/employee",
+      url: "http://localhost:8080/api/misc"+misc.username,
       headers: {
         Authorization: `Bearer ` + jwt,
       },
       data: {
         
-        name: misc.name,
-        surname: misc.surname,        
-        username:misc.username,
+       
         indate:misc.indate,
         outdate:misc.outdate,
-        jobName:misc.jobName,
-        departmentName:misc.departmentName,
+        
         
       },
     });
