@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@AllArgsConstructor
+/*@AllArgsConstructor
 @RestController
 @RequestMapping("/api/vacancy")
+@CrossOrigin
 public class VacancyController {
 
 
@@ -42,4 +43,4 @@ public class VacancyController {
         vacancyService.updateVacancy(id,updateVacancyRequest);
     }
 
-}
+}*/

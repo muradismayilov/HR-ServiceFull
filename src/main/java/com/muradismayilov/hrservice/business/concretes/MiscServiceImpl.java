@@ -1,9 +1,12 @@
 package com.muradismayilov.hrservice.business.concretes;
 
 import com.muradismayilov.hrservice.business.abstracts.MiscService;
+import com.muradismayilov.hrservice.business.core.utulities.mappers.ModelMapperService;
 import com.muradismayilov.hrservice.business.requests.CreateMiscRequest;
 import com.muradismayilov.hrservice.business.requests.UpdateMiscRequest;
 import com.muradismayilov.hrservice.business.responses.GetAllMiscResponse;
+import com.muradismayilov.hrservice.business.responses.GetEmployeeByIdResponse;
+import com.muradismayilov.hrservice.business.responses.GetMiscByIdResponse;
 import com.muradismayilov.hrservice.dataaccess.abstracts.EmployeeRepository;
 import com.muradismayilov.hrservice.dataaccess.abstracts.JobRepository;
 import com.muradismayilov.hrservice.dataaccess.abstracts.MiscRepository;
@@ -32,6 +35,9 @@ public class MiscServiceImpl implements MiscService {
 
     @Autowired
     private JobRepository jobRepository;
+
+    @Autowired
+    private ModelMapperService modelMapperService;
 
 
     @Override
@@ -113,5 +119,33 @@ public class MiscServiceImpl implements MiscService {
 
 
 
+    }
+
+    @Override
+    public GetMiscByIdResponse getMiscById(int id) {
+       Miscellaneous misc = miscRepository.findById(id).orElse(null);
+
+
+       GetMiscByIdResponse response = new GetMiscByIdResponse();
+       response.setId(misc.getId());
+       response.setName(misc.getName());
+       response.setSurname(misc.getSurname());
+       response.setUsername(misc.getUsername());
+       response.setIndate(misc.getIndate());
+       response.setOutdate(misc.getOutdate());
+       response.setJobName(misc.getJobName());
+       response.setDepartmentName(misc.getDepartmentName());
+       response.setJobId(misc.getJob().getId());
+
+       return response;
+
+
+
+
+       /*GetMiscByIdResponse responseitem =
+                this.modelMapperService.forResponse()
+                        .map(misc, GetMiscByIdResponse.class);
+
+        return responseitem;*/
     }
 }

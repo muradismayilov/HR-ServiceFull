@@ -61,6 +61,7 @@ public class JobServiceImpl implements JobService {
         job.setName(createJobRequest.getName());
         job.setCode(createJobRequest.getCode());
         job.setManager(createJobRequest.isManager());
+        job.setVacancy(createJobRequest.getVacancy());
         job.setDepartment(dep);
         jobRepository.save(job);
 
@@ -93,6 +94,7 @@ public class JobServiceImpl implements JobService {
         job.setId(updateJobRequest.getId());
         job.setName(updateJobRequest.getName());
         job.setManager(updateJobRequest.isManager());
+        job.setVacancy(updateJobRequest.getVacancy());
         job.setDepartment(dep);
         jobRepository.save(job);
 

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.HashMap;
+
 
 
 @SpringBootApplication
@@ -26,7 +26,7 @@ public class HrServiceApplication {
 	}
 
 
-	@ExceptionHandler
+	/*@ExceptionHandler
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ProblemDetails handleBusinessException(BusinessException businessException){
 
@@ -49,7 +49,7 @@ public class HrServiceApplication {
 			validationProblemDetails.getValidationErrors().put(fielderror.getField(),fielderror.getDefaultMessage());
 		}
 		return validationProblemDetails;
-	}
+	}*/
 	@Bean
 	public ModelMapper getmodelMapper() {
 		return new ModelMapper();

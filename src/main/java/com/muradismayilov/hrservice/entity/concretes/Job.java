@@ -1,5 +1,6 @@
 package com.muradismayilov.hrservice.entity.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,8 @@ public class Job {
     private String name;
     @Column(name = "manager")
     private boolean manager =false;
+    @Column(name = "vacancy")
+    private int vacancy;
 
 
 
@@ -31,7 +34,7 @@ public class Job {
     private Department department;
 
     @OneToMany(mappedBy = "job")
-    private List<Employee> employees;
+        private List<Employee> employees;
 
     //@JoinColumn(name="job_id",referencedColumnName = "jobId")
 }

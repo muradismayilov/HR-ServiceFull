@@ -15,6 +15,7 @@ public class CreateJobRequest {
 
     private boolean manager;
 
+    private int vacancy;
 
     private int departmentId;
 

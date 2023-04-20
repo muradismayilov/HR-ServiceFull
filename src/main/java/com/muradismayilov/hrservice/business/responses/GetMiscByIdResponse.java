@@ -4,17 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetAllJobsResponse {
+public class GetMiscByIdResponse {
 
     private int id;
-    private Long code;
     private String name;
-    private boolean manager;
-    private int vacancy;
+    private String surname;
+    private String username;
+    private Date indate;
+    private Date outdate;
+    private String jobName;
     private String departmentName;
 
-
+    private int jobId;
 }

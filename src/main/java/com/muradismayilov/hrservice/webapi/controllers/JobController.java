@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/job")
+@CrossOrigin
 public class JobController {
 
     @Autowired

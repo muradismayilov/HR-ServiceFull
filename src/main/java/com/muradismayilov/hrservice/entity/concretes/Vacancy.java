@@ -1,12 +1,13 @@
 package com.muradismayilov.hrservice.entity.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+/*@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -19,8 +20,8 @@ public class Vacancy {
     private String jobName;
     private String departmentName;
 
-    @OneToOne
-    private Job job;
-    @OneToOne
+    @OneToOne()
+      private Job job;
+    @OneToOne()
     private Department department;
-}
+}*/

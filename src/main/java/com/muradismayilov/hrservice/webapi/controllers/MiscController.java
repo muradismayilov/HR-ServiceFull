@@ -7,6 +7,7 @@ import com.muradismayilov.hrservice.business.requests.CreateMiscRequest;
 import com.muradismayilov.hrservice.business.requests.UpdateMiscRequest;
 
 import com.muradismayilov.hrservice.business.responses.GetAllMiscResponse;
+import com.muradismayilov.hrservice.business.responses.GetMiscByIdResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/misc")
+@CrossOrigin
 public class MiscController {
     @Autowired
     private MiscService miscService;
@@ -33,7 +35,11 @@ public class MiscController {
 
         return miscService.getAll();
     }
+    @GetMapping("/{id}")
+    public GetMiscByIdResponse getById(@PathVariable int id){
 
+        return miscService.getMiscById(id);
+    }
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id){ miscService.deleteMisc(id);
     }

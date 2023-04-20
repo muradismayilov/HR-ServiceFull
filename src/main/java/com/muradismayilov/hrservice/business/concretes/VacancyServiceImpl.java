@@ -5,9 +5,9 @@ import com.muradismayilov.hrservice.business.requests.CreateVacancyRequest;
 import com.muradismayilov.hrservice.business.requests.UpdateVacancyRequest;
 import com.muradismayilov.hrservice.business.responses.GetAllVacanciesResponse;
 import com.muradismayilov.hrservice.dataaccess.abstracts.JobRepository;
-import com.muradismayilov.hrservice.dataaccess.abstracts.VacancyRepository;
+
 import com.muradismayilov.hrservice.entity.concretes.Job;
-import com.muradismayilov.hrservice.entity.concretes.Vacancy;
+
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
+/*@AllArgsConstructor
 @Service
 public class VacancyServiceImpl implements VacancyService {
     @Autowired
@@ -65,4 +65,4 @@ public class VacancyServiceImpl implements VacancyService {
         vacancy.setVacancy(updateVacancyRequest.getVacancy());
         vacancyRepository.save(vacancy);
     }
-}
+}*/

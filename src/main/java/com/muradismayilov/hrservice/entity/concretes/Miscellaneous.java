@@ -26,7 +26,7 @@ public class Miscellaneous {
     private String jobName;
     private String departmentName;
 
-    @OneToOne
+    @OneToOne()
     private Job job;
     @OneToOne
     private Department department;

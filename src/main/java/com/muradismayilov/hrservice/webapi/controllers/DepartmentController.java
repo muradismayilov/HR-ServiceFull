@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/department")
+@CrossOrigin
 public class DepartmentController {
 
     @Autowired

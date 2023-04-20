@@ -12,6 +12,7 @@ public class UpdateJobRequest {
     private Long code;
     private String name;
     private boolean manager;
+    private int vacancy;
     private int departmentId;
 
 }
