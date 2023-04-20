@@ -1,12 +1,9 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useState } from "react";
-import EmployeeService from "../services/EmployeeService";
-import { useLocalState } from "../utilities/useLocalStorage";
-import { Button } from "semantic-ui-react";
+import React, { useState } from 'react'
+import { Button } from 'semantic-ui-react';
+import EmployeeService from '../services/EmployeeService';
+import { useLocalState } from '../utilities/useLocalStorage';
 
-export default function EmployeeDetails() {
-  let { id } = useParams();
+export default function AddEmployee() {
   const [jwt, setjwt] = useLocalState("", "jwt");
   const [employee, setemployee] = useState({
     id: "",
@@ -19,7 +16,7 @@ export default function EmployeeDetails() {
     workstatus: "",
     director: "",
     registerdate: "",
-   
+    password: "",
     passchangedate: "",
     jobId: "",
   });
@@ -32,42 +29,18 @@ export default function EmployeeDetails() {
   }
 
   function save() {
-    employeeService.updateEmployee(jwt, employee);
+    employeeService.addEmployee(jwt, employee);
   }
-
-  function deleteEmployee() {
-    employeeService.deleteEmployee(id, jwt);
-  }
-
-  useEffect(() => {
-    employeeService
-      .getEmployeeById(id, jwt)
-      .then(function (res) {
-        if (res.status === 200) {
-          setemployee(res.data);
-        }
-      })
-      .catch(function (error) {
-        console.log(error.message);
-      });
-  }, [id]);
 
   return (
     <div>
       <h1>
-        employee id: {employee.id} employee name:
+         employee name:
         {employee.name}
+        employee surname: {employee.surname}
       </h1>
 
-      <h3>
-        ID:{" "}
-        <input
-          type="id"
-          id="id"
-          onChange={(e) => updateEmployee("id", e.target.value)}
-          value={employee.id}
-        />
-      </h3>
+      
 
       <h3>
         employee name:{" "}
@@ -181,9 +154,7 @@ export default function EmployeeDetails() {
       <h3>
         <Button onClick={() => save()}>Submit Employee</Button>
       </h3>
-      <h3>
-        <Button onClick={() => deleteEmployee()}>Delete Employee</Button>
-      </h3>
+      
     </div>
-  );
+  )
 }

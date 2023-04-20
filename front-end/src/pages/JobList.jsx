@@ -24,7 +24,7 @@ useEffect(() => {
 }).catch(function (error) {         
   console.log(error.message);
 });
-});
+},[]);
 
 
   return (
@@ -35,7 +35,8 @@ useEffect(() => {
           <Table.HeaderCell>ID</Table.HeaderCell>
           <Table.HeaderCell>Code</Table.HeaderCell> 
             <Table.HeaderCell>Ad</Table.HeaderCell>
-                     
+            <Table.HeaderCell>Manager</Table.HeaderCell>
+            <Table.HeaderCell>Vacancy</Table.HeaderCell>
             <Table.HeaderCell>Department Name</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -43,10 +44,11 @@ useEffect(() => {
         { <Table.Body>
           {job.map((j,index) => (
             <Table.Row key={index}>
-              <Table.Cell><Link to = {`dashboardjob/job/${j.id}`}>{j.id}</Link> </Table.Cell>
+              <Table.Cell><Link to = {`/dashboardjob/job/${j.id}`}>{j.id}</Link> </Table.Cell>
               <Table.Cell>{j.code}</Table.Cell>  
               <Table.Cell>{j.name}</Table.Cell>
-                             
+              <Table.Cell>{j.manager}</Table.Cell>  
+              <Table.Cell>{j.vacancy}</Table.Cell>    
               <Table.Cell>{j.departmentName}</Table.Cell>
             </Table.Row>
           ))}

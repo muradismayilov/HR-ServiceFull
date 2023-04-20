@@ -1,23 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Icon, Menu, Table } from 'semantic-ui-react'
-import { useState } from "react";
-import { useLocalState } from "../utilities/useLocalStorage";
 import EmployeeService from '../services/EmployeeService';
-import { Link } from 'react-router-dom';
+import { useLocalState } from '../utilities/useLocalStorage';
 
-
-export default function DepList() {
-
-const [dep, setdep] = useState([])
+export default function MiscList() {
+const [misc, setmisc] = useState([])
 const [jwt, setjwt] = useLocalState("", "jwt");
 
 useEffect(() => {
     
   let employeeService = new EmployeeService();
-  employeeService.getDep(jwt).then(function (res) {
+  employeeService.getMisc(jwt).then(function (res) {
     if (res.status===200){
     
-      setdep(res.data)    
+      setmisc(res.data)    
       
     }
     
@@ -28,24 +25,36 @@ useEffect(() => {
 });
 },[]);
 
+
   return (
     <div>
-<Table celled>
+      
+      <Table celled>
         <Table.Header>
           <Table.Row>
-          <Table.HeaderCell>ID</Table.HeaderCell>
+          <Table.HeaderCell>ID</Table.HeaderCell>        
             <Table.HeaderCell>Ad</Table.HeaderCell>
-            <Table.HeaderCell>Code</Table.HeaderCell>          
-             </Table.Row>
+            <Table.HeaderCell>Soyad</Table.HeaderCell>
+            <Table.HeaderCell>Istifadeci adi</Table.HeaderCell>
+            <Table.HeaderCell>Indate</Table.HeaderCell>
+            <Table.HeaderCell>Outdate</Table.HeaderCell>
+             <Table.HeaderCell>Job Name</Table.HeaderCell>
+            <Table.HeaderCell>Department Name</Table.HeaderCell>
+          </Table.Row>
         </Table.Header>
 
         { <Table.Body>
-          {dep.map((d,index) => (
+          {misc.map((m,index) => (
             <Table.Row key={index}>
-              <Table.Cell><Link to = {`/dashboarddep/dep/${d.id}`}>{d.id}</Link> </Table.Cell>
-              <Table.Cell>{d.name}</Table.Cell>
-              <Table.Cell>{d.code}</Table.Cell>                 
-              
+              <Table.Cell><Link to = {`/dashboardmisc/misc/${m.id}`}>{m.id}</Link> </Table.Cell>
+               
+              <Table.Cell>{m.name}</Table.Cell>
+              <Table.Cell>{m.surname}</Table.Cell>  
+              <Table.Cell>{m.username}</Table.Cell>   
+              <Table.Cell>{m.indate}</Table.Cell>  
+              <Table.Cell>{m.outdate}</Table.Cell> 
+              <Table.Cell>{m.jobName}</Table.Cell>
+              <Table.Cell>{m.departmentName}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body> }
@@ -69,6 +78,8 @@ useEffect(() => {
           </Table.Row>
         </Table.Footer>
       </Table>
+
+
 
     </div>
   )

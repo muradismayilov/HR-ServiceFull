@@ -37,7 +37,7 @@ export default function DepCategories() {
         <Menu pointing vertical>
         <Menu.Item name="GET DEP" as={NavLink} to="/dashboarddep/dep"/>
         <Menu.Item name="ADD DEP" as={NavLink} to="/dashboarddep/dep/add" />
-        <Menu.Item name="PUT DEP" />
+        <Menu.Item name="PUT DEP"  />
         <Menu.Item name="DELETE DEP" />
       </Menu>
     </div>

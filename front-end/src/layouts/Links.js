@@ -19,6 +19,8 @@ export default function Links() {
           <Dropdown.Item as = {NavLink} to="/dashboardjob" >Jobs</Dropdown.Item> 
           <DropdownDivider/>
           <Dropdown.Item as = {NavLink} to="/dashboarddep" >Department</Dropdown.Item> 
+          <DropdownDivider/>
+          <Dropdown.Item as = {NavLink} to="/dashboardmisc" >Misc</Dropdown.Item> 
         </Dropdown.Menu>
       </Dropdown>
     </div>

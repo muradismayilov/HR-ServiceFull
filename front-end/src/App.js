@@ -6,10 +6,16 @@ import Login from "./layouts/Login";
 import PrivateRoute from "./layouts/PrivateRoute";
 import HomePageJob from "./layouts/HomePageJob";
 import HomePageDep from "./layouts/HomePageDep";
-import JobAdd from "./pages/JobAdd";
-import DepAdd from "./pages/DepAdd";
-import EmployeeAdd from "./pages/EmployeeAdd";
+import AddEmployee from "./pages/AddEmployee";
 import EmployeeDetails from "./pages/EmployeeDetails";
+import DepDetails from "./pages/DepDetails";
+import JobDetails from "./pages/JobDetails";
+import AddDep from "./pages/AddDep";
+import AddJob from "./pages/AddJob";
+import HomePageMisc from "./layouts/HomePageMisc";
+import AddMisc from "./pages/AddMisc";
+import MiscDetails from "./pages/MiscDetails";
+
 
 
 function App() {
@@ -53,6 +59,22 @@ function App() {
         }
       />
       <Route
+        path="/dashboardmisc"
+        element={
+          <PrivateRoute>
+            <HomePageMisc/>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboardmisc/misc"
+        element={
+          <PrivateRoute>
+            <HomePageMisc/>
+          </PrivateRoute>
+        }
+      />
+      <Route
         path="/dashboardjob/job"
         element={
           <PrivateRoute>
@@ -77,10 +99,34 @@ function App() {
         }
       /> 
       <Route
+        path="/dashboarddep/dep/add"
+        element={
+          <PrivateRoute>
+           <AddDep/>
+          </PrivateRoute>
+        }
+      /> 
+      <Route
         path="/dashboard/employee/add"
         element={
           <PrivateRoute>
-            <EmployeeAdd />
+            <AddEmployee/>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboardjob/job/add"
+        element={
+          <PrivateRoute>
+            <AddJob/>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboardmisc/misc/add"
+        element={
+          <PrivateRoute>
+            <AddMisc/>
           </PrivateRoute>
         }
       />
@@ -92,22 +138,32 @@ function App() {
           </PrivateRoute>
         }
       /> 
-       <Route
-        path="/dashboardjob/job/add"
+      <Route
+        path="/dashboarddep/dep/:id"
         element={
           <PrivateRoute>
-            <JobAdd />
+            <DepDetails />
           </PrivateRoute>
         }
       /> 
       <Route
-        path="/dashboarddep/dep/add"
+        path="/dashboardjob/job/:id"
         element={
           <PrivateRoute>
-            <DepAdd />
+            <JobDetails />
           </PrivateRoute>
         }
       /> 
+       <Route
+        path="/dashboardmisc/misc/:id"
+        element={
+          <PrivateRoute>
+            <MiscDetails />
+          </PrivateRoute>
+        }
+      /> 
+      
+      
 
       <Route path="/login" element={<Login />} />
       
