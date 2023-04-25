@@ -1,39 +1,33 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Icon, Menu, Table } from 'semantic-ui-react'
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Icon, Menu, Table } from "semantic-ui-react";
 import { useState } from "react";
 import { useLocalState } from "../utilities/useLocalStorage";
-import EmployeeService from '../services/EmployeeService';
+import EmployeeService from "../services/EmployeeService";
 
 export default function JobList() {
-const [job, setjob] = useState([])
-const [jwt, setjwt] = useLocalState("", "jwt");
+  const [job, setjob] = useState([]);
+  const [jwt, setjwt] = useLocalState("", "jwt");
 
-useEffect(() => {
-    
-  let employeeService = new EmployeeService();
-  employeeService.getJob(jwt).then(function (res) {
-    if (res.status===200){
-    
-      setjob(res.data)    
-      
-    }
-    
-    
-    
-}).catch(function (error) {         
-  console.log(error.message);
-});
-},[]);
-
+  useEffect(() => {
+    let employeeService = new EmployeeService();
+    employeeService
+      .getJob(jwt)
+      .then(function (res) {
+        if (res.status === 200) {
+          setjob(res.data);
+        }
+      })
+      .catch(function (error) {});
+  }, []);
 
   return (
     <div>
       <Table celled>
         <Table.Header>
           <Table.Row>
-          <Table.HeaderCell>ID</Table.HeaderCell>
-          <Table.HeaderCell>Code</Table.HeaderCell> 
+            <Table.HeaderCell>ID</Table.HeaderCell>
+            <Table.HeaderCell>Code</Table.HeaderCell>
             <Table.HeaderCell>Ad</Table.HeaderCell>
             <Table.HeaderCell>Manager</Table.HeaderCell>
             <Table.HeaderCell>Vacancy</Table.HeaderCell>
@@ -41,18 +35,22 @@ useEffect(() => {
           </Table.Row>
         </Table.Header>
 
-        { <Table.Body>
-          {job.map((j,index) => (
-            <Table.Row key={index}>
-              <Table.Cell><Link to = {`/dashboardjob/job/${j.id}`}>{j.id}</Link> </Table.Cell>
-              <Table.Cell>{j.code}</Table.Cell>  
-              <Table.Cell>{j.name}</Table.Cell>
-              <Table.Cell>{j.manager}</Table.Cell>  
-              <Table.Cell>{j.vacancy}</Table.Cell>    
-              <Table.Cell>{j.departmentName}</Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body> }
+        {
+          <Table.Body>
+            {job.map((j, index) => (
+              <Table.Row key={index}>
+                <Table.Cell>
+                  <Link to={`/dashboardjob/job/${j.id}`}>{j.id}</Link>{" "}
+                </Table.Cell>
+                <Table.Cell>{j.code}</Table.Cell>
+                <Table.Cell>{j.name}</Table.Cell>
+                <Table.Cell>{String(j.manager)}</Table.Cell>
+                <Table.Cell>{j.vacancy}</Table.Cell>
+                <Table.Cell>{j.departmentName}</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        }
 
         <Table.Footer>
           <Table.Row>
@@ -74,5 +72,5 @@ useEffect(() => {
         </Table.Footer>
       </Table>
     </div>
-  )
+  );
 }

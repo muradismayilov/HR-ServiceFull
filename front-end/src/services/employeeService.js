@@ -144,12 +144,14 @@ export default class EmployeeService {
   updateMisc(jwt,misc) {
     return axios({
       method: "put",
-      url: "http://localhost:8080/api/misc"+misc.username,
+      url: "http://localhost:8080/api/misc/"+misc.username,
       headers: {
         Authorization: `Bearer ` + jwt,
       },
       data: {
-                
+        name:misc.name,
+        surname:misc.surname,
+        username:misc.username,                
         indate:misc.indate,
         outdate:misc.outdate,
         jobId:misc.jobId
@@ -160,7 +162,7 @@ export default class EmployeeService {
   addMisc(jwt,misc) {
     return axios({
       method: "post",
-      url: "http://localhost:8080/api/misc"+misc.username,
+      url: "http://localhost:8080/api/misc/"+misc.username,
       headers: {
         Authorization: `Bearer ` + jwt,
       },
@@ -187,6 +189,28 @@ export default class EmployeeService {
       password: password,
     });
   }
+  signUp(name,username, password) {
+    return axios.post("http://localhost:8080/login/save", {
+      name:name,
+      username: username,
+      password: password,
+    });
+  }
+  tokenControl(jwt) {
+    return axios.get("http://localhost:8080/login/validate?token="+jwt, {
+      headers: {
+        Authorization: `Bearer ` + jwt,
+      },
+    });
+  }
+
+  logout(jwt){
+    return axios.post("http://localhost:8080/logout",{
+      headers: {
+        Authorization: `Bearer ` + jwt,
+      },
+    })
+}
 
   getJob(jwt) {
     return axios.get("http://localhost:8080/api/job", {
@@ -240,7 +264,7 @@ export default class EmployeeService {
   deleteMisc(id, jwt) {
     return axios({
       method: "delete",
-      url: "http://localhost:8080/api/employee/" + id,
+      url: "http://localhost:8080/api/misc/" + id,
       headers: {
         Authorization: `Bearer ` + jwt,
       },

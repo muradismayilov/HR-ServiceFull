@@ -6,34 +6,28 @@ import EmployeeService from "../services/EmployeeService";
 import { useLocalState } from "../utilities/useLocalStorage";
 
 export default function ProductList() {
-  
   const [employee, setemployee] = useState([]);
   const [jwt, setjwt] = useLocalState("", "jwt");
-  
+
   useEffect(() => {
-    
     let employeeService = new EmployeeService();
-    employeeService.getEmployee(jwt).then(function (res) {
-      if (res.status===200){
+    employeeService
+      .getEmployee(jwt)
+      .then(function (res) {
+        if (res.status === 200) {
+          setemployee(res.data);
+        }
+      })
+      .catch(function (error) {
       
-        setemployee(res.data)
-        
-      console.log(employee[2])
-      
-        
-      }
-      
-      
-      
-  }).catch(function (error) {         
-    console.log(error.message);
-  });
-  },[]);
-  return <div>
-    <Table celled>
+      });
+  }, []);
+  return (
+    <div>
+      <Table celled>
         <Table.Header>
           <Table.Row>
-          <Table.HeaderCell>ID</Table.HeaderCell>
+            <Table.HeaderCell>ID</Table.HeaderCell>
             <Table.HeaderCell>Ad</Table.HeaderCell>
             <Table.HeaderCell>Soyad</Table.HeaderCell>
             <Table.HeaderCell>Ata adi</Table.HeaderCell>
@@ -48,24 +42,30 @@ export default function ProductList() {
           </Table.Row>
         </Table.Header>
 
-        { <Table.Body>
-          {employee.map((employee,index) => (
-            <Table.Row key={index}>
-              <Table.Cell><Link to = {`/dashboard/employee/${employee.id}`}>{employee.id}</Link> </Table.Cell>
-              <Table.Cell>{employee.name}</Table.Cell>
-              <Table.Cell>{employee.surname}</Table.Cell>
-              <Table.Cell>{employee.fathername}</Table.Cell>
-              <Table.Cell>{employee.username}</Table.Cell>
-              <Table.Cell>{employee.gender}</Table.Cell>
-              <Table.Cell>{employee.birthdate}</Table.Cell>
-              <Table.Cell>{employee.jobName}</Table.Cell>
-              <Table.Cell>{employee.director}</Table.Cell>
-              <Table.Cell>{employee.registerdate}</Table.Cell>
-              <Table.Cell>{employee.passchangedate}</Table.Cell>
-              <Table.Cell>{employee.departmentName}</Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body> }
+        {
+          <Table.Body>
+            {employee.map((employee, index) => (
+              <Table.Row key={index}>
+                <Table.Cell>
+                  <Link to={`/dashboard/employee/${employee.id}`}>
+                    {employee.id}
+                  </Link>{" "}
+                </Table.Cell>
+                <Table.Cell>{employee.name}</Table.Cell>
+                <Table.Cell>{employee.surname}</Table.Cell>
+                <Table.Cell>{employee.fathername}</Table.Cell>
+                <Table.Cell>{employee.username}</Table.Cell>
+                <Table.Cell>{employee.gender}</Table.Cell>
+                <Table.Cell>{employee.birthdate}</Table.Cell>
+                <Table.Cell>{employee.jobName}</Table.Cell>
+                <Table.Cell>{employee.director}</Table.Cell>
+                <Table.Cell>{employee.registerdate}</Table.Cell>
+                <Table.Cell>{employee.passchangedate}</Table.Cell>
+                <Table.Cell>{employee.departmentName}</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        }
 
         <Table.Footer>
           <Table.Row>
@@ -86,5 +86,6 @@ export default function ProductList() {
           </Table.Row>
         </Table.Footer>
       </Table>
-  </div>;
+    </div>
+  );
 }

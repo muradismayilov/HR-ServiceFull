@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Container, Menu } from "semantic-ui-react";
+import EmployeeService from "../services/EmployeeService";
+import { useLocalState } from "../utilities/useLocalStorage";
 import Links from "./Links";
 
 
@@ -9,16 +11,18 @@ import SignedOut from "./SignedOut";
 
 export default function Navi() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-  
+ let employeeService = new EmployeeService()
+ const [jwt, setjwt] = useLocalState("", "jwt");
   
   function handleSignOut() {
-    setIsAuthenticated(false) 
-
+   employeeService.logout(jwt)
+  setIsAuthenticated(false) 
+   window.location.href = `/login`
     
   }
   function handleSignIn() {
-    // setIsAuthenticated(true)
-    window.location.href = `/login`
+  setIsAuthenticated(true)
+    //window.location.href = `/login`
   }
 
   return (
@@ -26,7 +30,7 @@ export default function Navi() {
       <Menu inverted fixed="top">
         <Container>
           <Menu.Item name="home" />
-          <Menu.Item name="messages" />
+          
 
           <Menu.Menu position="right">
             <Links />

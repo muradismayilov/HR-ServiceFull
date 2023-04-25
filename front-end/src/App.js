@@ -15,8 +15,9 @@ import AddJob from "./pages/AddJob";
 import HomePageMisc from "./layouts/HomePageMisc";
 import AddMisc from "./pages/AddMisc";
 import MiscDetails from "./pages/MiscDetails";
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import SignUp from "./layouts/SignUp";
+import 'react-notifications/lib/notifications.css';
 
 function App() {
   
@@ -34,7 +35,7 @@ function App() {
       />
       
       <Route
-        path="/dashboard"
+        path="/dashboard/*"
         element={
           <PrivateRoute>
             <HomePage />
@@ -51,7 +52,7 @@ function App() {
     /> 
       
       <Route
-        path="/dashboardjob"
+        path="/dashboardjob/*"
         element={
           <PrivateRoute>
             <HomePageJob />
@@ -83,7 +84,7 @@ function App() {
         }
       /> 
       <Route
-        path="/dashboarddep"
+        path="/dashboarddep/*"
         element={
           <PrivateRoute>
             <HomePageDep />
@@ -166,6 +167,7 @@ function App() {
       
 
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
       
     </Routes>
   );
