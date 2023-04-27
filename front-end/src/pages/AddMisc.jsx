@@ -1,4 +1,4 @@
-import React, {  useState } from 'react'
+import React, {  useState,useEffect } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 import EmployeeService from '../services/EmployeeService';
@@ -6,7 +6,7 @@ import { useLocalState } from '../utilities/useLocalStorage';
 
 export default function AddMisc() {
 
-
+  
   const [jwt, setjwt] = useLocalState("", "jwt");
   const [misc, setmisc] = useState({
       
@@ -14,20 +14,30 @@ export default function AddMisc() {
     username:"",
     indate:"",
     outdate:"",
+    jobId:""
     
   });
   let employeeService = new EmployeeService();
 
   function updateMisc(prop, value) {
+   
     const newmisc = { ...misc };
     newmisc[prop] = value;
     setmisc(newmisc);
   }
   function save() {
-    employeeService.addMisc(jwt, misc);
+
+
+    employeeService.addMisc(jwt, misc).then(res=>{
+     
+      if(res.status===201){
+        alert("Misc added")
+      }
+    })         ;
   }
   
 
+ 
   return (
 
 <Container className="mt-5">
@@ -45,14 +55,21 @@ export default function AddMisc() {
 <Row className="justify-content-center align-items-center">
   <Col md = "8" lg = "6">
   <Form.Label className="fs-4"> indate</Form.Label>
-        <Form.Control type="indate" placeholder="Enter indate" size="lg" value={misc.indate} onChange={(e) => updateMisc("indate", e.target.value)}/>
-    
+       
+    <Form.Control type="date" size="lg" value={misc.indate} onChange={(e) => updateMisc("indate", e.target.value)}/>
   </Col>
 </Row>
 <Row className="justify-content-center align-items-center">
   <Col md = "8" lg = "6">
   <Form.Label className="fs-4"> outdate</Form.Label>
-        <Form.Control type="outdate" placeholder="Enter outdate" size="lg" value={misc.outdate} onChange={(e) => updateMisc("outdate", e.target.value)}/>
+       
+        <Form.Control type="date" size="lg" value={misc.outdate} onChange={(e) => updateMisc("outdate", e.target.value)}/>
+  </Col>
+</Row>
+<Row className="justify-content-center align-items-center">
+  <Col md = "8" lg = "6">
+  <Form.Label className="fs-4"> jobId</Form.Label>
+        <Form.Control type="jobId" placeholder="Enter jobId" size="lg" value={misc.jobId} onChange={(e) => updateMisc("jobId", e.target.value)}/>
     
   </Col>
 </Row>

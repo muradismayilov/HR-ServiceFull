@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Menu } from 'semantic-ui-react'
 
-export default function SignedOut({signIn},{signUp}) { // signIn laoutundaki props la eynidir
+export default function SignedOut({signIn}) { // signIn laoutundaki props la eynidir
   return (
     <div>
 

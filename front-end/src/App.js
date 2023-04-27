@@ -26,7 +26,7 @@ function App() {
    <Routes>
    
    <Route
-        path="/"
+        path="/*"
         element={
           <PrivateRoute>
             <HomePage />
@@ -60,7 +60,7 @@ function App() {
         }
       />
       <Route
-        path="/dashboardmisc"
+        path="/dashboardmisc/*"
         element={
           <PrivateRoute>
             <HomePageMisc/>

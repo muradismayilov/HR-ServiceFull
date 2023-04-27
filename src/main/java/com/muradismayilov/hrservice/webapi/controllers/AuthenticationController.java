@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +23,7 @@ public class AuthenticationController {
 
     @Autowired
     private final AuthenticationService authenticationService;
-    @Autowired
-    private final JwtService jwtService;
+
 
     @PostMapping("/save")
     public ResponseEntity<UserResponse> save(@RequestBody UserDto userdto){//UserResponse=AuthenticationResponse  Userdto = Registrationrequest save = register
@@ -38,10 +38,9 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.auth(userRequest));
     }
 
-    @GetMapping("/validate")
-    public ResponseEntity<?> validateToken(@RequestParam String token, @AuthenticationPrincipal User user){
-        boolean isValid=jwtService.tokenControl(token,user);
-
+    @PostMapping("/validate")
+    public ResponseEntity<?> validateToken(@RequestParam String token, @RequestParam String username){
+        boolean isValid=authenticationService.tokenControl(token,username);
 
         return ResponseEntity.ok(isValid);
     }

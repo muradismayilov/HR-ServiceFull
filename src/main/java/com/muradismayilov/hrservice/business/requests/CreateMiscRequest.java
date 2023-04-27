@@ -15,5 +15,6 @@ public class CreateMiscRequest {
 
     private Date indate;
     private Date outdate;
+    private int jobId;
 
 }

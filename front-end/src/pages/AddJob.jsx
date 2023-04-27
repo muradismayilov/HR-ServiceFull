@@ -25,7 +25,12 @@ export default function JobAdd() {
     setjob(newjob);
   }
   function save() {
-    employeeService.addJob(jwt, job);
+    employeeService.addJob(jwt, job).then(res=>{
+     
+      if(res.status===201){
+        alert("Job added")
+      }
+    })         ;
   }
   
   return (

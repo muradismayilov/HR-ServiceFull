@@ -17,4 +17,5 @@ public interface MiscService {
     void updateMisc(String username, UpdateMiscRequest updateMiscRequest);
 
     GetMiscByIdResponse getMiscById(int id);
+
 }

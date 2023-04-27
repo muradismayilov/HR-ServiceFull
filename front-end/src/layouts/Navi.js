@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { Container, Menu } from "semantic-ui-react";
 import EmployeeService from "../services/EmployeeService";
 import { useLocalState } from "../utilities/useLocalStorage";
@@ -15,7 +16,7 @@ export default function Navi() {
  const [jwt, setjwt] = useLocalState("", "jwt");
   
   function handleSignOut() {
-   employeeService.logout(jwt)
+  setjwt("")
   setIsAuthenticated(false) 
    window.location.href = `/login`
     

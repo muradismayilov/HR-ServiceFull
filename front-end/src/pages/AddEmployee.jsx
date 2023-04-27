@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Badge, Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 import EmployeeService from '../services/EmployeeService';
@@ -6,6 +6,7 @@ import { useLocalState } from '../utilities/useLocalStorage';
 
 export default function AddEmployee() {
   const [jwt, setjwt] = useLocalState("", "jwt");
+  const [emplist, setemplist] = useState([])
   const [employee, setemployee] = useState({
     id: "",
     name: "",
@@ -23,15 +24,42 @@ export default function AddEmployee() {
   });
   let employeeService = new EmployeeService();
 
+
+
   function updateEmployee(prop, value) {
+   
+    emplist.map(em=>{      
+if(em.username===employee.username){
+  alert("Username must be uniqe")
+}
+    })
     const newemployee = { ...employee };
     newemployee[prop] = value;
     setemployee(newemployee);
   }
 
   function save() {
-    employeeService.addEmployee(jwt, employee);
+    employeeService.addEmployee(jwt, employee).then(res=>{
+     
+      if(res.status===201){
+        alert("Employee added")
+      }
+    })         ;
   }
+
+  useEffect(() => {
+   
+    employeeService
+      .getEmployee(jwt)
+      .then(function (res) {
+        if (res.status === 200) {
+          setemplist(res.data);
+        }
+      })
+      .catch(function (error) {
+      
+      });
+  }, []);
 
   return (
 
@@ -63,7 +91,8 @@ export default function AddEmployee() {
 </Row>
 <Row className="justify-content-center align-items-center">
   <Col md = "8" lg = "6">
-  <Form.Label className="fs-4">Employee username</Form.Label> <Badge pill bg="info">
+  <Form.Label className="fs-4">Employee username</Form.Label> 
+  <Badge pill bg="info">
    Username must be unique
   </Badge>
         <Form.Control type="username" placeholder="Enter employee username(must be unique)" size="lg" value={employee.username} onChange={(e) => updateEmployee("username", e.target.value)}/>
@@ -74,8 +103,12 @@ export default function AddEmployee() {
 <Row className="justify-content-center align-items-center">
   <Col md = "8" lg = "6">
   <Form.Label className="fs-4">Employee gender</Form.Label>
-        <Form.Control type="gender" placeholder="Enter employee gender" size="lg" value={employee.gender} onChange={(e) => updateEmployee("gender", e.target.value)}/>
-    
+        {/* <Form.Control type="gender" placeholder="Enter employee gender" size="lg" value={employee.gender} onChange={(e) => updateEmployee("gender", e.target.value)}/> */}
+        <div>
+       <Form.Check inline label="Male" name="group1" type={'radio'} value="Male" onChange={(e) => updateEmployee("gender", e.target.value)}/>
+          <Form.Check inline label="Female" name="group1" type={'radio'} value="Female" onChange={(e) => updateEmployee("gender", e.target.value)}/>
+
+       </div>
   </Col>
 </Row>
 <Row className="justify-content-center align-items-center">

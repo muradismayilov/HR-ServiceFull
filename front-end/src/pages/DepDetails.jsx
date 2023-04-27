@@ -18,8 +18,13 @@ export default function DepDetails() {
     setdep(newdep);
   }
   function save() {
-    employeeService.updateDepartment(jwt, dep);
-    alert("added")
+    employeeService.updateDepartment(jwt, dep).then(res=>{
+     
+      if(res.status===200){
+        alert("Department updated")
+      }
+    });
+   
   }
 
   function deletedep() {

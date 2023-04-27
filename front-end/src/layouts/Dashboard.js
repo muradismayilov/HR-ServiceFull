@@ -17,7 +17,7 @@ export default function Dashboard() {
           <Grid.Column width={12}>
             <Routes>
               <Route exact path="/" element= {<EmployeeList/>} /> 
-              <Route path="/dashboard/employee" element={<EmployeeList />} />
+              <Route path="/dashboard/employee/*" element={<EmployeeList />} />
               
              
             </Routes>

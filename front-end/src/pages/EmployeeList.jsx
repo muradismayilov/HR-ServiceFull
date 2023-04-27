@@ -34,6 +34,7 @@ export default function ProductList() {
             <Table.HeaderCell>Istifadeci adi</Table.HeaderCell>
             <Table.HeaderCell>Cinsiyyeti</Table.HeaderCell>
             <Table.HeaderCell>Dogum tarixi</Table.HeaderCell>
+            <Table.HeaderCell>Is durumu</Table.HeaderCell>
             <Table.HeaderCell>Is </Table.HeaderCell>
             <Table.HeaderCell>Direktor</Table.HeaderCell>
             <Table.HeaderCell>Register Date</Table.HeaderCell>
@@ -57,6 +58,7 @@ export default function ProductList() {
                 <Table.Cell>{employee.username}</Table.Cell>
                 <Table.Cell>{employee.gender}</Table.Cell>
                 <Table.Cell>{employee.birthdate}</Table.Cell>
+                <Table.Cell>{String(employee.workstatus)}</Table.Cell>
                 <Table.Cell>{employee.jobName}</Table.Cell>
                 <Table.Cell>{employee.director}</Table.Cell>
                 <Table.Cell>{employee.registerdate}</Table.Cell>

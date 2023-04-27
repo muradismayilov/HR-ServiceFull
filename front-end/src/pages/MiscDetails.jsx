@@ -26,11 +26,17 @@ export default function MiscDetails() {
     setmisc(newmisc);
   }
   function save() {
-    employeeService.updateMisc(jwt, misc);
+    employeeService.updateMisc(jwt, misc).then(res=>{
+     
+      if(res.status===200){
+        alert("Updated")
+      }
+    });
   }
 
   function deleteMisc() {
     employeeService.deleteMisc(id, jwt);
+    alert("Deleted")
   }
 
   useEffect(() => {
@@ -83,15 +89,15 @@ export default function MiscDetails() {
 <Row className="justify-content-center align-items-center">
   <Col md = "8" lg = "6">
   <Form.Label className="fs-4"> indate</Form.Label>
-        <Form.Control type="indate" placeholder="Enter indate" size="lg" value={misc.indate} onChange={(e) => updateMisc("indate", e.target.value)}/>
-    
+        
+        <Form.Control type="date" size="lg" value={misc.indate} onChange={(e) => updateMisc("indate", e.target.value)}/>
   </Col>
 </Row>
 <Row className="justify-content-center align-items-center">
   <Col md = "8" lg = "6">
   <Form.Label className="fs-4"> outdate</Form.Label>
-        <Form.Control type="outdate" placeholder="Enter outdate" size="lg" value={misc.outdate} onChange={(e) => updateMisc("outdate", e.target.value)}/>
-    
+       
+        <Form.Control type="date" size="lg" value={misc.outdate} onChange={(e) => updateMisc("outdate", e.target.value)}/>
   </Col>
 </Row>
 <Row className="justify-content-center align-items-center">

@@ -24,8 +24,13 @@ export default function JobDetails() {
     setjob(newjob);
   }
   function save() {
-    employeeService.updateJob(jwt, job);
-    alert("added")
+    employeeService.updateJob(jwt, job).then(res=>{
+     
+      if(res.status===200){
+        alert("Job updated")
+      }
+    });
+    
   }
 
   function deleteJob() {

@@ -8,17 +8,19 @@ const PrivateRoute = ({children}) => {
     const [jwt, setjwt] = useLocalState("", "jwt");
     const [isLoading, setisLoading] = useState(true)
     const [isValid, setisValid] = useState(null)
+    const [user, setuser] = useLocalState("", "user");
 
     if(jwt){
- employeeService.tokenControl(jwt).then((isValid)=>{  
-    setisValid(isValid.data)
+ employeeService.tokenControl(jwt,user).then(res=>{  
+    
+    setisValid(res.data)  
     setisLoading(false)
  })
     }else {
-        return <Navigate to="/login" />
+      return <Navigate to="/login" />
     }
 
-    return isLoading ? (<div>Loading</div>) : isValid===true ? children : <Navigate to="/login" />
+    return isLoading ? (<div>Loading</div> ) : isValid===true ? children : <Navigate to="/login" />
 }
 export default PrivateRoute
 

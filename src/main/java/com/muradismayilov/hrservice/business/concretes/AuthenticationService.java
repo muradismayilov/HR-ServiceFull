@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,8 @@ public class AuthenticationService {
     private final UserRepository userRepository;
     @Autowired
     private final TokenRepository tokenRepository;
+
+    @Autowired
     private final JwtService jwtService;
 
     @Autowired
@@ -93,4 +96,9 @@ public class AuthenticationService {
     }
 
 
+    public boolean tokenControl(String token,String username) {
+       final User user  = userRepository.findByUsername(username).orElse(null);
+
+        return jwtService.tokenControl(token,user);
+    }
 }

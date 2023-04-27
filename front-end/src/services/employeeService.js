@@ -149,6 +149,7 @@ export default class EmployeeService {
         Authorization: `Bearer ` + jwt,
       },
       data: {
+        id:misc.id,
         name:misc.name,
         surname:misc.surname,
         username:misc.username,                
@@ -171,6 +172,7 @@ export default class EmployeeService {
        
         indate:misc.indate,
         outdate:misc.outdate,
+        jobId:misc.jobId
         
         
       },
@@ -196,21 +198,21 @@ export default class EmployeeService {
       password: password,
     });
   }
-  tokenControl(jwt) {
-    return axios.get("http://localhost:8080/login/validate?token="+jwt, {
-      headers: {
-        Authorization: `Bearer ` + jwt,
-      },
-    });
+  tokenControl(jwt,user) {
+    return axios.post(`http://localhost:8080/login/validate?token=${jwt}&&username=${user}` );
+
+    
   }
 
   logout(jwt){
-    return axios.post("http://localhost:8080/logout",{
+    return axios({
+      method: "post",
+      url: "http://localhost:8080/logout",
       headers: {
         Authorization: `Bearer ` + jwt,
       },
-    })
-}
+})
+  }
 
   getJob(jwt) {
     return axios.get("http://localhost:8080/api/job", {

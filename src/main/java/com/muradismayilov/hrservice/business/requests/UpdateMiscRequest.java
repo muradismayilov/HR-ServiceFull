@@ -13,7 +13,10 @@ import java.sql.Date;
 @NoArgsConstructor
 public class UpdateMiscRequest {
 
-
+    private int id;
+    private String name;
+    private String surname;
+    private String username;
     private Date indate;
     private Date outdate;
     private int jobId;
